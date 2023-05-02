@@ -1,11 +1,49 @@
 import SearchEntityComponent from "@/components/molecules/SearchEntity";
 import SearchHeader from "@/components/molecules/SearchHeader";
+import { debounce } from "@/utils/functions";
+import { useEffect, useMemo, useState } from "react";
+
+enum SearchEntity {
+  Users = "users",
+  Repositories = "repositories",
+}
+
+const searchEntities = Object.values(SearchEntity);
 
 export default function Search() {
+  const [query, setQuery] = useState("");
+  const [entity, setEntity] = useState(SearchEntity.Users);
+
+  useEffect(() => {
+    if (query) {
+      search(query, entity);
+    }
+  }, [query, entity]);
+
+  const search = (q: string, entity: SearchEntity) => {
+    window.open(`/search/${entity}?q=${q.trim()}`, "_blank");
+  };
+
+  const onChangeSearchText = (s: string) => {
+    setQuery(s);
+  };
+
+  const debouncedChangeHandler = useMemo(() => {
+    return debounce(onChangeSearchText, 500);
+  }, []);
+
+  const onChangeSearchEntity = (v: string) => {
+    setEntity(v as SearchEntity);
+  };
+
   return (
     <div className="space-y-4">
       <SearchHeader />
-      <SearchEntityComponent />
+      <SearchEntityComponent
+        onSearchInput={debouncedChangeHandler}
+        searchEntities={searchEntities}
+        onChangeSearchEntity={onChangeSearchEntity}
+      />
     </div>
   );
 }

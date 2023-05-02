@@ -11,6 +11,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@octokit/rest": "^19.0.7",
+    "@octokit/types": "^9.2.0",
     "@types/node": "18.16.3",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
