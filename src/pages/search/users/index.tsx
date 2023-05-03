@@ -1,18 +1,25 @@
 import { client } from "@/api/searchUsers";
-import UserSearchResults from "@/components/pages/UserSearchResults";
-import { User, UserEdge, areSearchParamsCorrect } from "@/interfaces";
+import UserList from "@/components/organisms/UserList";
+import SearchResults from "@/components/templates/SearchResults";
+import {
+  User,
+  UserEdge,
+  UserListProps,
+  areSearchParamsCorrect,
+} from "@/interfaces";
 import { gql } from "@apollo/client";
 import { GetServerSidePropsContext } from "next";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   let users: User[] | null = null,
     error = null;
+
   if (areSearchParamsCorrect(context.query)) {
     try {
       const response = await client.query({
         query: gql`
           query {
-            search(query: "${context.query.q} type:User", type: USER, first: 30) {\
+            search(query: "${context.query.q} type:User", type: USER, first: 30) {
               userCount
               edges {
                 node {
@@ -40,6 +47,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   } else {
     error = "Query params are not correct!";
   }
+
   return {
     props: {
       users,
@@ -48,4 +56,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-export default UserSearchResults;
+export default function UserSearchResults(props: UserListProps) {
+  return (
+    <SearchResults>
+      <UserList {...props} />
+    </SearchResults>
+  );
+}

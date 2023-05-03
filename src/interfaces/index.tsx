@@ -27,6 +27,11 @@ export interface RepositoriesListProps {
   repos?: Repositories;
   error?: string;
 }
+export interface ReposListProps {
+  repos: Repositories;
+  error: Error | null;
+  isLoading: boolean;
+}
 
 type SearchParams = Endpoints["GET /search/repositories"]["parameters"];
 export function areSearchParamsCorrect(params: any): params is SearchParams {

@@ -23,6 +23,8 @@ function UserList(props: UserListProps) {
   if (!users?.length) {
     return <NoResultsMessage items="users" />;
   }
+
+  return <></>;
 }
 
 export default UserList;
