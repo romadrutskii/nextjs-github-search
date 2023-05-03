@@ -1,31 +1,36 @@
 import { Endpoints } from "@octokit/types";
 
-export type Users = Endpoints["GET /search/users"]["response"]["data"]["items"];
-export type User = Users[0];
-export type SearchUserParams = Endpoints["GET /search/users"]["parameters"];
-export interface UserListProps {
-  users?: Users;
-  error?: string;
+// In a real-world project I would use GraphQL Code Generator
+export interface User {
+  __typename: string;
+  company: string;
+  login: string;
+  name: string;
+  location: string;
+  bio: string;
+  avatarUrl: string;
+  id: string;
 }
-export function areUserSearchParamsCorrect(
-  params: any
-): params is SearchUserParams {
-  return (params as SearchUserParams).q !== undefined || "q" in params;
+export interface UserEdge {
+  __typename: string;
+  node: User;
+}
+export interface UserListProps {
+  users?: User[];
+  error?: string;
 }
 
 export type Repositories =
   Endpoints["GET /search/repositories"]["response"]["data"]["items"];
 export type Repository = Repositories[0];
-export type SearchRepositoriesParams =
-  Endpoints["GET /search/repositories"]["parameters"];
 export interface RepositoriesListProps {
   repos?: Repositories;
   error?: string;
 }
-export function areReposSearchParamsCorrect(
-  params: any
-): params is SearchRepositoriesParams {
-  return (params as SearchRepositoriesParams).q !== undefined || "q" in params;
+
+type SearchParams = Endpoints["GET /search/repositories"]["parameters"];
+export function areSearchParamsCorrect(params: any): params is SearchParams {
+  return (params as SearchParams).q !== undefined || "q" in params;
 }
 
 export type Modify<T, R> = Omit<T, keyof R> & R;

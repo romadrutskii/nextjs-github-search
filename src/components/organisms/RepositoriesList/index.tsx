@@ -1,12 +1,10 @@
+import { octokit } from "@/api/searchRepos";
 import ErrorMessageBlock from "@/components/atoms/ErrorMessageBlock";
 import LoadingSpinner from "@/components/atoms/LoadingSpinner";
 import RepositoryCard from "@/components/molecules/RepositoryCard";
-import { Repositories, areReposSearchParamsCorrect } from "@/interfaces";
-import { Octokit } from "@octokit/rest";
+import { Repositories, areSearchParamsCorrect } from "@/interfaces";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-const octokit = new Octokit();
 
 function RepositoriesList() {
   const router = useRouter();
@@ -17,7 +15,7 @@ function RepositoriesList() {
 
   useEffect(() => {
     async function fetchData() {
-      if (!areReposSearchParamsCorrect(router.query)) {
+      if (!areSearchParamsCorrect(router.query)) {
         return;
       }
 

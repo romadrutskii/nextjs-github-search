@@ -5,13 +5,7 @@ import format from "date-fns/format";
 
 function RepositoryCard(props: Repository) {
   return (
-    <div
-      className="flex p-4 space-x-3"
-      style={{
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
-      }}
-    >
+    <div className="flex p-4 space-x-3">
       <div className="mt-1.5">
         <svg
           aria-hidden="true"
