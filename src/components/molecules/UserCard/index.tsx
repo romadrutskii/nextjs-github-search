@@ -1,7 +1,8 @@
+import ExternalLink from "@/components/atoms/ExternalLink";
 import { User } from "@/interfaces";
 import Image from "next/image";
 
-function UserCard({ avatarUrl, name, login, bio, location }: User) {
+function UserCard({ avatarUrl, name, login, bio, location, url }: User) {
   return (
     <div className="flex p-4 space-x-3">
       <Image
@@ -15,7 +16,9 @@ function UserCard({ avatarUrl, name, login, bio, location }: User) {
       <div>
         <div className="flex items-center space-x-3">
           {name && <div className="text-blue-500">{name}</div>}
-          <div className="text-lg font-semibold text-gray-600">{login}</div>
+          <ExternalLink url={url}>
+            <div className="text-lg font-semibold text-gray-600">{login}</div>
+          </ExternalLink>
         </div>
         {bio && <div>{bio}</div>}
         {location && <div className="text-gray-500">{location}</div>}

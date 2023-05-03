@@ -10,6 +10,7 @@ export interface User {
   bio: string;
   avatarUrl: string;
   id: string;
+  url: string;
 }
 export interface UserEdge {
   __typename: string;

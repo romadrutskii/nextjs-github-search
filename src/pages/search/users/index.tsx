@@ -31,6 +31,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
                     bio
                     avatarUrl
                     id
+                    url
                   }
                 }
               }

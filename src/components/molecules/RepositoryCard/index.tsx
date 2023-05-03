@@ -1,4 +1,5 @@
 import Badge from "@/components/atoms/Badge";
+import ExternalLink from "@/components/atoms/ExternalLink";
 import StargazersCount from "@/components/atoms/StargazersCount";
 import { Repository } from "@/interfaces";
 import format from "date-fns/format";
@@ -9,6 +10,7 @@ function RepositoryCard({
   topics,
   stargazers_count,
   updated_at,
+  html_url,
 }: Repository) {
   return (
     <div className="flex p-4 space-x-3">
@@ -28,7 +30,9 @@ function RepositoryCard({
       </div>
 
       <div className="flex-column space-y-1">
-        <div className="text-blue-500">{full_name}</div>
+        <div className="text-blue-500">
+          <ExternalLink url={html_url}>{full_name}</ExternalLink>
+        </div>
         {description && <div>{description}</div>}
         {topics && (
           <div className="flex flex-wrap -mr-3">
