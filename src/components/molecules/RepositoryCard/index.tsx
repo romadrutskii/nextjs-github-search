@@ -3,7 +3,13 @@ import StargazersCount from "@/components/atoms/StargazersCount";
 import { Repository } from "@/interfaces";
 import format from "date-fns/format";
 
-function RepositoryCard(props: Repository) {
+function RepositoryCard({
+  full_name,
+  description,
+  topics,
+  stargazers_count,
+  updated_at,
+}: Repository) {
   return (
     <div className="flex p-4 space-x-3">
       <div className="mt-1.5">
@@ -22,18 +28,18 @@ function RepositoryCard(props: Repository) {
       </div>
 
       <div className="flex-column space-y-1">
-        <div className="text-blue-500">{props.full_name}</div>
-        <div>{props.description}</div>
-        <div className="flex flex-wrap -mr-3">
-          {props.topics?.map((t) => (
-            <Badge className="mt-1 mr-3" key={t} text={t} />
-          ))}
-        </div>
-        <div className="flex space-x-4 text-gray-500">
-          <StargazersCount count={props.stargazers_count} />
-          <div>
-            Updated on {format(new Date(props.updated_at), "LLL d, yyyy")}
+        <div className="text-blue-500">{full_name}</div>
+        {description && <div>{description}</div>}
+        {topics && (
+          <div className="flex flex-wrap -mr-3">
+            {topics.map((t) => (
+              <Badge className="mt-1 mr-3" key={t} text={t} />
+            ))}
           </div>
+        )}
+        <div className="flex space-x-4 text-gray-500">
+          <StargazersCount count={stargazers_count} />
+          <div>Updated on {format(new Date(updated_at), "LLL d, yyyy")}</div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { octokit } from "@/api/searchRepos";
 import ErrorMessageBlock from "@/components/atoms/ErrorMessageBlock";
 import LoadingSpinner from "@/components/atoms/LoadingSpinner";
+import NoResultsMessage from "@/components/atoms/NoResultsMessage";
 import RepositoryCard from "@/components/molecules/RepositoryCard";
 import { Repositories, areSearchParamsCorrect } from "@/interfaces";
 import { useRouter } from "next/router";
@@ -9,7 +10,7 @@ import { useEffect, useState } from "react";
 function RepositoriesList() {
   const router = useRouter();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [repos, setRepos] = useState<Repositories>([]);
   const [error, setError] = useState<Error | null>(null);
 
@@ -36,7 +37,7 @@ function RepositoriesList() {
 
   if (repos?.length) {
     return (
-      <div className="flex-col space-y-3">
+      <div className="flex-col space-y-3 divide-y">
         {repos.map((repo) => (
           <RepositoryCard key={repo.id} {...repo} />
         ))}
@@ -44,11 +45,17 @@ function RepositoriesList() {
     );
   }
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   if (error) {
     return <ErrorMessageBlock>{error.message}</ErrorMessageBlock>;
   }
 
-  return <LoadingSpinner />;
+  if (!repos?.length) {
+    return <NoResultsMessage items="repositories" />;
+  }
 }
 
 export default RepositoriesList;

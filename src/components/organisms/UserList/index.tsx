@@ -1,4 +1,5 @@
 import ErrorMessageBlock from "@/components/atoms/ErrorMessageBlock";
+import NoResultsMessage from "@/components/atoms/NoResultsMessage";
 import UserCard from "@/components/molecules/UserCard";
 import { UserListProps } from "@/interfaces";
 
@@ -7,17 +8,21 @@ function UserList(props: UserListProps) {
 
   if (users?.length) {
     return (
-      <div className="flex-col space-y-3">
+      <div className="flex-col space-y-3 divide-y">
         {users.map((user) => (
           <UserCard key={user.id} {...user} />
         ))}
       </div>
     );
-  } else if (error) {
+  }
+
+  if (error) {
     return <ErrorMessageBlock>{error}</ErrorMessageBlock>;
   }
 
-  return <div>No users found. Try to change query</div>;
+  if (!users?.length) {
+    return <NoResultsMessage items="users" />;
+  }
 }
 
 export default UserList;
