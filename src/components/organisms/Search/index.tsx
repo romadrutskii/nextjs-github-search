@@ -1,6 +1,7 @@
 import SearchEntityComponent from "@/components/molecules/SearchEntity";
 import SearchHeader from "@/components/molecules/SearchHeader";
 import { debounce } from "@/utils/functions";
+import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 
 enum SearchEntity {
@@ -11,6 +12,8 @@ enum SearchEntity {
 const searchEntities = Object.values(SearchEntity);
 
 export default function Search() {
+  const router = useRouter();
+
   const [query, setQuery] = useState("");
   const [entity, setEntity] = useState(SearchEntity.Users);
 
@@ -21,7 +24,7 @@ export default function Search() {
   }, [query, entity]);
 
   const search = (q: string, entity: SearchEntity) => {
-    window.open(`/search/${entity}?q=${q.trim()}`, "_blank");
+    router.push(`/search/${entity}?q=${q.trim()}`);
   };
 
   const onChangeSearchText = (s: string) => {
