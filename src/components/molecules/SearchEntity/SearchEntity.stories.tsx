@@ -10,11 +10,26 @@ const meta: Meta<typeof SearchEntity> = {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: "fullscreen",
   },
+  decorators: [
+    (Story) => (
+      <div className="p-4">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof SearchEntity>;
 
 export const DefaultStory: Story = {
-  args: {},
+  args: {
+    searchEntities: ["Cat", "Dog"],
+    onSearchInput: (text: string) => {
+      console.log(text);
+    },
+    onChangeSearchEntity: (value: string) => {
+      alert(value);
+    },
+  },
 };

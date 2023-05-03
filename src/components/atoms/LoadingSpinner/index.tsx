@@ -1,10 +1,10 @@
-function LoadingSpinner() {
+function LoadingSpinner({ size = 90 }: any) {
   return (
     <div>
       <svg
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        width="90"
-        height="90"
+        width={size}
+        height={size}
         viewBox="0 0 38 38"
         xmlns="http://www.w3.org/2000/svg"
         stroke="#000"

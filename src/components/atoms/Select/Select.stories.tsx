@@ -10,6 +10,13 @@ const meta: Meta<typeof Select> = {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: "fullscreen",
   },
+  decorators: [
+    (Story) => (
+      <div className="p-4">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -29,8 +36,8 @@ export const RepositoriesDefaultValue: Story = {
   },
 };
 
-export const NoDefaultValue: Story = {
+export const OtherOptions: Story = {
   args: {
-    options: ["Repositories", "Users"],
+    options: ["Cat", "Dog"],
   },
 };
