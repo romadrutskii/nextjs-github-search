@@ -24,7 +24,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
               edges {
                 node {
                   ... on User {
-                    company
                     login
                     name
                     location

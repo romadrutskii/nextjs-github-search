@@ -2,8 +2,6 @@ import { Endpoints } from "@octokit/types";
 
 // In a real-world project I would use GraphQL Code Generator
 export interface User {
-  __typename: string;
-  company: string;
   login: string;
   name: string;
   location: string;
