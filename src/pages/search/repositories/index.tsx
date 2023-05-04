@@ -1,4 +1,4 @@
-import { octokit } from "@/api/searchRepos";
+import repositoriesApi from "@/api/repositories";
 import RepositoriesList from "@/components/organisms/RepositoriesList";
 import SearchResults from "@/components/templates/SearchResults";
 import { Repositories, areSearchParamsCorrect } from "@/interfaces";
@@ -20,8 +20,8 @@ function RepositoriesPage() {
 
       setIsLoading(true);
       try {
-        const response = await octokit.rest.search.repos(router.query);
-        setRepos(response.data.items);
+        const items = await repositoriesApi.search(router.query);
+        setRepos(items);
       } catch (e) {
         if (e instanceof Error) {
           setError(e.message);
