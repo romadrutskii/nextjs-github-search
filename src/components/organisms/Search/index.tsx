@@ -43,7 +43,7 @@ export default function Search() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex-column items-start max-w-fit">
       <SearchHeader />
       <SearchEntityComponent
         onSearchInput={debouncedChangeHandler}
