@@ -10,7 +10,7 @@ function RepositoriesPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [repos, setRepos] = useState<Repositories>([]);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -24,7 +24,7 @@ function RepositoriesPage() {
         setRepos(response.data.items);
       } catch (e) {
         if (e instanceof Error) {
-          setError(e);
+          setError(e.message);
         }
       } finally {
         setIsLoading(false);

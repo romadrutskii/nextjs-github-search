@@ -2,7 +2,7 @@ import SearchEntityComponent from "@/components/molecules/SearchEntity";
 import SearchHeader from "@/components/molecules/SearchHeader";
 import { debounce } from "@/utils/functions";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 enum SearchEntity {
   Users = "users",
@@ -17,15 +17,18 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [entity, setEntity] = useState(SearchEntity.Users);
 
+  const search = useCallback(
+    (q: string, entity: SearchEntity) => {
+      router.push(`/search/${entity}?q=${q.trim()}`);
+    },
+    [router]
+  );
+
   useEffect(() => {
     if (query) {
       search(query, entity);
     }
-  }, [query, entity]);
-
-  const search = (q: string, entity: SearchEntity) => {
-    router.push(`/search/${entity}?q=${q.trim()}`);
-  };
+  }, [query, entity, search]);
 
   const onChangeSearchText = (s: string) => {
     setQuery(s);

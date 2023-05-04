@@ -20,7 +20,7 @@ function RepositoriesList({ repos, isLoading, error }: ReposListProps) {
   }
 
   if (error) {
-    return <ErrorMessageBlock>{error.message}</ErrorMessageBlock>;
+    return <ErrorMessageBlock>{error}</ErrorMessageBlock>;
   }
 
   if (!repos?.length) {

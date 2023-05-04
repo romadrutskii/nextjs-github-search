@@ -22,16 +22,13 @@ export interface UserListProps {
 export type Repositories =
   Endpoints["GET /search/repositories"]["response"]["data"]["items"];
 export type Repository = Repositories[0];
-export interface RepositoriesListProps {
-  repos?: Repositories;
-  error?: string;
-}
 export interface ReposListProps {
   repos: Repositories;
-  error: Error | null;
+  error?: string;
   isLoading: boolean;
 }
 
+// Type Guard
 type SearchParams = Endpoints["GET /search/repositories"]["parameters"];
 export function areSearchParamsCorrect(params: any): params is SearchParams {
   return (params as SearchParams).q !== undefined || "q" in params;
