@@ -19,7 +19,7 @@ Firstly, install npm modules:
 npm i
 ```
 
-After modules installation, you need to set up your `.env` file.
+After modules installation, you need to set up your `.env.local` file.
 It should look like this:
 
 ```bash
