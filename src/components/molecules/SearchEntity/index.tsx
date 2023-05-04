@@ -20,10 +20,10 @@ function SearchEntityComponent({
   onChangeSearchEntity,
 }: Props) {
   return (
-    <div className="flex space-x-4">
-      <Input placeholder={searchPlaceholder} onInput={onSearchInput} />
+    <div className="flex flex-wrap justify-center space-x-4">
+      <Input className="mb-2" placeholder={searchPlaceholder} onInput={onSearchInput} />
       <Select
-        className="flex-1"
+        className="mb-2"
         options={searchEntities}
         onInput={onChangeSearchEntity}
       />

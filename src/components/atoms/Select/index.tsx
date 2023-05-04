@@ -10,7 +10,7 @@ type Props = Modify<
   }
 >;
 
-function Select({ options, defaultValue, onInput }: Props) {
+function Select({ options, defaultValue, onInput, className = '' }: Props) {
   const [value, setValue] = useState(defaultValue);
 
   const changeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -21,7 +21,7 @@ function Select({ options, defaultValue, onInput }: Props) {
 
   return (
     <select
-      className="py-2.5 px-3.5 rounded border border-gray-400 bg-transparent"
+      className={`py-2.5 px-3.5 rounded border border-gray-400 bg-transparent ${className}`}
       value={value}
       onChange={changeHandler}
     >

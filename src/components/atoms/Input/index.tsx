@@ -9,7 +9,7 @@ type Props = Modify<
   }
 >;
 
-function Input({ onInput, placeholder }: Props) {
+function Input({ onInput, placeholder, className = '' }: Props) {
   const [value, setValue] = useState("");
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +20,7 @@ function Input({ onInput, placeholder }: Props) {
 
   return (
     <input
-      className="py-2.5 px-3.5 rounded border border-gray-400"
+      className={`py-2.5 px-3.5 rounded border border-gray-400 ${className}`}
       placeholder={placeholder}
       type="text"
       value={value}
