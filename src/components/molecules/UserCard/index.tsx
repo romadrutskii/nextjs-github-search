@@ -15,8 +15,12 @@ function UserCard({ avatarUrl, name, login, bio, location, url }: User) {
       />
       <div>
         <div className="flex items-center space-x-3">
-          {name && <div className="text-blue-500">{name}</div>}
-          <ExternalLink url={url}>
+          {name && (
+            <div className="text-blue-500" data-test-id="search-user-card-name">
+              {name}
+            </div>
+          )}
+          <ExternalLink url={url} dataTestId="search-user-card-link">
             <div className="text-lg font-semibold text-gray-600">{login}</div>
           </ExternalLink>
         </div>

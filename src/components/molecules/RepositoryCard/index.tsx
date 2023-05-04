@@ -30,8 +30,10 @@ function RepositoryCard({
       </div>
 
       <div className="flex-column space-y-1">
-        <div className="text-blue-500">
-          <ExternalLink url={html_url}>{full_name}</ExternalLink>
+        <div className="text-blue-500" data-test-id="search-repo-card-name">
+          <ExternalLink url={html_url} dataTestId="search-repo-card-link">
+            {full_name}
+          </ExternalLink>
         </div>
         {description && <div>{description}</div>}
         {topics && (
