@@ -21,3 +21,7 @@ export function debounce<F extends Function>(
     }, ms);
   };
 }
+
+export function isEmpty(obj: object): boolean {
+  return Object.keys(obj).length === 0;
+}

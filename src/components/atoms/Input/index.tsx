@@ -1,5 +1,5 @@
 import { Modify } from "@/interfaces";
-import { ChangeEvent, HTMLAttributes, useState } from "react";
+import { ChangeEvent, HTMLAttributes, memo, useState } from "react";
 
 type Props = Modify<
   HTMLAttributes<HTMLInputElement>,
@@ -9,7 +9,11 @@ type Props = Modify<
   }
 >;
 
-function Input({ onInput, placeholder, className = '' }: Props) {
+const Input = memo(function Input({
+  onInput,
+  placeholder,
+  className = "",
+}: Props) {
   const [value, setValue] = useState("");
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +31,6 @@ function Input({ onInput, placeholder, className = '' }: Props) {
       onChange={changeHandler}
     ></input>
   );
-}
+});
 
 export default Input;

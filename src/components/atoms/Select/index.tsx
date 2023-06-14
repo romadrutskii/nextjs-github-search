@@ -1,5 +1,5 @@
 import { Modify } from "@/interfaces";
-import { ChangeEvent, HTMLAttributes, useState } from "react";
+import { ChangeEvent, HTMLAttributes, memo, useState } from "react";
 
 type Props = Modify<
   HTMLAttributes<HTMLSelectElement>,
@@ -10,7 +10,12 @@ type Props = Modify<
   }
 >;
 
-function Select({ options, defaultValue, onInput, className = '' }: Props) {
+const Select = memo(function Select({
+  options,
+  defaultValue,
+  onInput,
+  className = "",
+}: Props) {
   const [value, setValue] = useState(defaultValue);
 
   const changeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -32,6 +37,6 @@ function Select({ options, defaultValue, onInput, className = '' }: Props) {
       ))}
     </select>
   );
-}
+});
 
 export default Select;

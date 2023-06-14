@@ -38,9 +38,9 @@ export default function Search() {
     return debounce(onChangeSearchText, 500);
   }, []);
 
-  const onChangeSearchEntity = (v: string) => {
+  const onChangeSearchEntity = useCallback((v: string) => {
     setEntity(v as SearchEntity);
-  };
+  }, []);
 
   return (
     <div className="space-y-4 flex-column items-start max-w-fit">

@@ -2,6 +2,7 @@ import repositoriesApi from "@/api/repositories";
 import RepositoriesList from "@/components/organisms/RepositoriesList";
 import SearchResults from "@/components/templates/SearchResults";
 import { Repositories, areSearchParamsCorrect } from "@/interfaces";
+import { isEmpty } from "@/utils/functions";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -14,11 +15,16 @@ function RepositoriesPage() {
 
   useEffect(() => {
     async function fetchData() {
-      if (!areSearchParamsCorrect(router.query)) {
+      if (isEmpty(router.query)) {
         return;
       }
 
-      setIsLoading(true);
+      if (!areSearchParamsCorrect(router.query)) {
+        setError("Query params are not correct!");
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const items = await repositoriesApi.search(router.query);
         setRepos(items);

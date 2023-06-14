@@ -1,4 +1,6 @@
-const SearchHeader = () => {
+import { memo } from "react";
+
+const SearchHeader = memo(function SearchHeader() {
   return (
     <div className="flex items-center space-x-2">
       <div>
@@ -21,6 +23,6 @@ const SearchHeader = () => {
       </div>
     </div>
   );
-};
+});
 
 export default SearchHeader;
