@@ -1,8 +1,8 @@
-import usersApi from "@/api/users";
-import UserList from "@/components/organisms/UserList";
-import SearchResults from "@/components/templates/SearchResults";
-import { User, UserListProps, areSearchParamsCorrect } from "@/interfaces";
-import { GetServerSidePropsContext } from "next";
+import usersApi from '@/api/users';
+import UserList from '@/components/organisms/UserList';
+import SearchResults from '@/components/templates/SearchResults';
+import { User, UserListProps, areSearchParamsCorrect } from '@/interfaces';
+import { GetServerSidePropsContext } from 'next';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   let users: User[] | null = null,
@@ -17,7 +17,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       }
     }
   } else {
-    error = "Query params are not correct!";
+    error = 'Query params are not correct!';
   }
 
   return {
